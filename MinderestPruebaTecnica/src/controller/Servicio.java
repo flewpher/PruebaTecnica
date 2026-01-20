@@ -3,7 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 import model.Conexion;
-import model.producto;
+import model.Producto;
 
 public class Servicio {
     private Conexion conexion;
@@ -46,7 +46,7 @@ public class Servicio {
                 Long clienteId = rs.getLong("cliente_id");
                 Long grupoId = rs.getLong("grupo_id");
 
-                Producto prod = new producto(id, nombre, clienteId, grupoId);
+                Producto prod = new Producto(id, nombre, clienteId, grupoId);
                 productosEquivalentes.add(prod);
             }
         } catch (Exception e) {
