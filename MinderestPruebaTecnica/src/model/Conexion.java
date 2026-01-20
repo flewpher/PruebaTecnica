@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class Conexion {
     private static Connection instancia = null;
-    private static final String CONFIG_FILE = "db.properties";
+    private static final String ARCHIVO = "db.properties";
 
     public Conexion() {
     }
@@ -18,6 +18,8 @@ public class Conexion {
     public static Connection getConnect() {
         if (instancia == null) {
             try {
+                Class.forName("org.mariadb.jdbc.Driver");
+
                 Properties props = cargarConfiguracion();
 
                 String host = props.getProperty("db.host");
@@ -26,35 +28,31 @@ public class Conexion {
                 String user = props.getProperty("db.user");
                 String password = props.getProperty("db.password");
 
-                String url = "jdbc:mysql://" + host + ":" + port + "/" + dbname;
+                String url = "jdbc:mariadb://" + host + ":" + port + "/" + dbname;
 
                 instancia = DriverManager.getConnection(url, user, password);
 
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
+                if (instancia != null) {
+                    // System.out.println("[DEBUG] Conexión establecida: " + instancia);
+                } else {
+                    // System.out.println("[DEBUG] DriverManager.getConnection devolvió null");
+                }
+
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
         return instancia;
     }
 
-    private static Properties cargarConfiguracion() throws IOException {
+    private static Properties cargarConfiguracion() {
         Properties props = new Properties();
-        try (InputStream input = new FileInputStream(CONFIG_FILE)) {
+        try (InputStream input = new FileInputStream(ARCHIVO)) {
             props.load(input);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
         return props;
     }
 
-    public static void cerrarConexion() {
-        if (instancia != null) {
-            try {
-                instancia.close();
-                instancia = null;
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        }
-    }
 }
