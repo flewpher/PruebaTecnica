@@ -45,7 +45,6 @@ public class Servicio {
 
     public List<Producto> obtenerProductosEquivalentes(Long clienteID, Producto producto) {
         List<Producto> productosEquivalentes = new ArrayList<>();
-
         String sql = "WITH RECURSIVE eqs(id) AS ("
                 + " SELECT ?"
                 + " UNION"
