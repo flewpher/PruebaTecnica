@@ -31,24 +31,26 @@ DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `id_cliente` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_cliente`)
+  `codigo` VARCHAR(24) NOT NULL,
+  PRIMARY KEY (`id_cliente`),
+  UNIQUE KEY `uq_cliente_codigo` (`codigo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nombre`) VALUES
-(1, 'Empresa A'),
-(2, 'Empresa B'),
-(3, 'Empresa C'),
-(4, 'Empresa D'),
-(5, 'Empresa E'),
-(6, 'Empresa F'),
-(7, 'Empresa G'),
-(8, 'Empresa H'),
-(9, 'Empresa I'),
-(10, 'Empresa J');
+INSERT INTO `cliente` (`id_cliente`, `nombre`, `codigo`) VALUES
+(1, 'Empresa A', 'EMA01'),
+(2, 'Empresa B', 'EMB02'),
+(3, 'Empresa C', 'EMC03'),
+(4, 'Empresa D', 'EMD04'),
+(5, 'Empresa E', 'EME05'),
+(6, 'Empresa F', 'EMF06'),
+(7, 'Empresa G', 'EMG07'),
+(8, 'Empresa H', 'EMH08'),
+(9, 'Empresa I', 'EMI09'),
+(10, 'Empresa J', 'EMJ10');
 
 -- --------------------------------------------------------
 
