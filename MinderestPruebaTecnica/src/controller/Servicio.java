@@ -29,17 +29,25 @@ public class Servicio {
     }
 
     public void crearEquivalencia(Producto productoA, Producto productoB) {
-        String sql = "INSERT INTO producto_equivalencia (producto_a, producto_b) VALUES (?, ?)";
-        try (var conn = Conexion.getConnect();
-                var pstmt = conn.prepareStatement(sql)) {
+        if (productoA.getId().equals(productoB.getId())) {
+            System.err.println("No se puede crear una equivalencia entre el mismo producto");
+            return;
+        } else if (productoA.getClienteId().equals(productoB.getClienteId())) {
+            System.err.println("No se puede crear una equivalencia entre productos del mismo cliente");
+            return;
+        } else {
+            String sql = "INSERT INTO producto_equivalencia (producto_a, producto_b) VALUES (?, ?)";
+            try (var conn = Conexion.getConnect();
+                    var pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setLong(1, productoA.getId());
-            pstmt.setLong(2, productoB.getId());
+                pstmt.setLong(1, productoA.getId());
+                pstmt.setLong(2, productoB.getId());
 
-            pstmt.executeUpdate();
-            System.out.println("Equivalencia creada");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+                pstmt.executeUpdate();
+                System.out.println("Equivalencia creada");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 
