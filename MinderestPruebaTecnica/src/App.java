@@ -1,37 +1,29 @@
 import controller.Servicio;
-import model.Producto;
 
 public class App {
     public static void main(String[] args) {
-
-        /*
-         * Conexion conexion = new Conexion();
-         * String sql = "SELECT * FROM producto";
-         * 
-         * try (var conn = Conexion.getConnect();
-         * var stmt = conn.createStatement();
-         * var rs = stmt.executeQuery(sql)) {
-         * 
-         * while (rs.next()) {
-         * System.out.println(
-         * "ID: " + rs.getInt("producto.id_producto") + ", Nombre: " +
-         * rs.getString("producto.nombre"));
-         * }
-         * } catch (Exception e) {
-         * System.err.println(e.getMessage());
+        Servicio servicio = new Servicio();
+        servicio.listarProductos();
+        // Producto producto1 = new Producto(1L, "Leche entera marca A", 1L);
+        /**
+         * List<Producto> equivalentes = servicio.obtenerProductosEquivalentes(1L,
+         * producto1);
+         * for (Producto p : equivalentes) {
+         * System.out.println(p.getNombre() + " ID: " + p.getId());
          * }
          */
 
-        Producto producto = new Producto(null, "prueba", 1L, 2L);
-        System.out.println(producto);
-        Servicio servicio = new Servicio();
-        // servicio.insertarProducto(producto);
-        /*
-         * servicio.obtenerProductosEquivalentes(1L, producto).forEach(p -> {
-         * System.out.println("ID: " + p.getId() + ", Nombre: " + p.getNombre() +
-         * ", Cliente ID: " + p.getClienteId()
-         * + ", Grupo ID: " + p.getGrupoId());
-         * });
+        // Producto producto2 = new Producto(14L, "Leche entera MismaMarca", 3L);
+        // servicio.insertarProducto(producto2);
+        // servicio.listarProductos();
+        // servicio.crearEquivalencia(producto1, producto2);
+
+        /**
+         * List<Producto> equivalentes = servicio.obtenerProductosEquivalentes(1L,
+         * producto1);
+         * for (Producto p : equivalentes) {
+         * System.out.println(p.getNombre() + " ID: " + p.getId());
+         * }
          */
     }
 }
