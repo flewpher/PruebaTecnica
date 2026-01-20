@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class Conexion {
     private static Connection instancia = null;
     private static final String CONFIG_FILE = "db.properties";
 
-    private Conexion() {
+    public Conexion() {
     }
 
     public static Connection getConnect() {

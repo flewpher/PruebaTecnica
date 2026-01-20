@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 public class Producto {
     private final Long id;
@@ -10,7 +10,6 @@ public class Producto {
         this.id = id;
         this.nombre = nombre;
         this.clienteId = clienteId;
-        this.grupoId = grupoId;
     }
 
     public Long getId() {
